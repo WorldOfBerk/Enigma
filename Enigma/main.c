@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+// Function to convert a string to uppercase
 char *strupr(char *str) {
   for (int i = 0; str[i]; i++) {
     str[i] = toupper(str[i]);
@@ -10,6 +11,7 @@ char *strupr(char *str) {
   return str;
 }
 
+// Function to convert a string to lowercase
 char *strlwr(char *str) {
   for (int i = 0; str[i]; i++) {
     str[i] = tolower(str[i]);
@@ -32,12 +34,13 @@ int main() {
 
   char text[1000];
   printf("Enter the text: ");
-  getchar();
+  getchar(); // Clear the input buffer
   fgets(text, sizeof(text), stdin);
-  text[strcspn(text, "\n")] = '\0';
+  text[strcspn(text, "\n")] = '\0'; // Remove the newline character from input
 
   char *uppercase_text = (char *)strupr(text);
 
+  // Encryption
   if (operation_type == 'e') {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < strlen(uppercase_text); j++) {
@@ -50,7 +53,10 @@ int main() {
       }
     }
     printf("Encrypted text: %s\n", uppercase_text);
-  } else if (operation_type == 'd') {
+  } 
+  
+  // Decryption
+  else if (operation_type == 'd') {
     for (int i = 2; i >= 0; i--) {
       for (int j = 0; j < strlen(uppercase_text); j++) {
         char c = uppercase_text[j];
@@ -63,7 +69,9 @@ int main() {
       }
     }
     printf("Decrypted text: %s\n", uppercase_text);
-  } else {
+  } 
+  
+  else {
     printf("Invalid operation type. Please enter 'e' or 'd'.\n");
     return 1;
   }
